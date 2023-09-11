@@ -5,7 +5,7 @@
 <!ENTITY version     "2023.09.11">
 <!ENTITY launch      "Settings/&name;">
 <!ENTITY packageVER  "&version;">
-<!ENTITY packageMD5  "5b3093cb902dd983d63031d9c956a754">
+<!ENTITY packageMD5  "067d40706c67a8742c8f96b20147f840">
 <!ENTITY packageName "&name;-package-&packageVER;">
 <!ENTITY packagefile "&packageName;.txz">
 <!ENTITY github      "belphemur/compose_plugin">
