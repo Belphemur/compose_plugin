@@ -25,6 +25,8 @@
 >
 
 <CHANGES>
+###2023.09.12b
+- Fix creation of stack without snake_case
 ###2023.09.12a
 - Force snake_case naming for docker compose project
   - enforced by Docker Compose since v2.17

@@ -27,7 +27,8 @@ switch ($_POST['action']) {
 
         #Create stack folder
         $stackName = isset($_POST['stackName']) ? urldecode(($_POST['stackName'])) : "";
-        $folderName = toSnakeCase($stackName);
+        $stackName = toSnakeCase($stackName);
+        $folderName = $stackName;
         $folder = "$compose_root/$folderName";
         while ( true ) {
           if ( is_dir($folder) ) {
