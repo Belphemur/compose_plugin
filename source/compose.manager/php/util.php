@@ -20,4 +20,18 @@ function getPath($basePath) {
     return $outPath;
 }
 
+function toSnakeCase($input)
+{
+    // Trim leading and trailing spaces
+    $input = trim($input);
+    // Convert PascalCase to snake_case
+    $input = preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $input);
+    // Replace spaces with underscores
+    $input = str_replace(' ', '_', $input);
+    // Remove special characters that aren't underscore
+    $input = preg_replace('/[^A-Za-z0-9_]/', '', $input);
+    // Convert to lowercase
+    return strtolower($input);
+}
+
 ?>

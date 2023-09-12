@@ -27,13 +27,7 @@ switch ($_POST['action']) {
 
         #Create stack folder
         $stackName = isset($_POST['stackName']) ? urldecode(($_POST['stackName'])) : "";
-        $folderName = str_replace('"',"",$stackName);
-        $folderName = str_replace("'","",$folderName);
-        $folderName = str_replace("&","",$folderName);
-        $folderName = str_replace("(","",$folderName);
-        $folderName = str_replace(")","",$folderName);
-        $folderName = preg_replace("/ {2,}/", " ", $folderName);
-        $folderName = preg_replace("/\s/", "_", $folderName);
+        $folderName = toSnakeCase($stackName);
         $folder = "$compose_root/$folderName";
         while ( true ) {
           if ( is_dir($folder) ) {
@@ -80,7 +74,7 @@ switch ($_POST['action']) {
     case 'changeName':
         $script = isset($_POST['script']) ? urldecode(($_POST['script'])) : "";
         $newName = isset($_POST['newName']) ? urldecode(($_POST['newName'])) : "";
-        file_put_contents("$compose_root/$script/name",trim($newName));
+        file_put_contents("$compose_root/$script/name",toSnakeCase($newName));
         echo json_encode( [ 'result' => 'success', 'message' => '' ] );
         break;
     case 'changeDesc':
