@@ -25,6 +25,9 @@
 >
 
 <CHANGES>
+###2023.09.11a
+- Force snake_case naming for docker compose project
+  - enforced by Docker Compose since v2.17
 ###2023.09.11
 - Update dependencies
   - Docker Compose v2.21.0
