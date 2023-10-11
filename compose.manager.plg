@@ -36,7 +36,7 @@
 - Update dependencies
   - Docker Compose v2.21.0
   - ACE 2.1.2
-###2023.05.24 
+###2023.05.24
 - Fix to patch_ui.sh for 6.12
 ###2023.04.27 
 - Docker Compose v2.17.3
