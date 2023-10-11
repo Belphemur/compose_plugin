@@ -18,11 +18,11 @@ jobs:
         shell: bash
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       
     - name: Get current date
       id: date
-      run: echo "::set-output name=date::$(date +'%Y.%m.%d')" 
+      run: echo "date=$(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
       
     - name: Set Pre-Build ENV Variables
       if: github.event.inputs.version_letter
@@ -37,8 +37,8 @@ jobs:
    
     - name: Set Post-Build ENV Variables
       id: version
-      run: echo "::set-output name=version::${{steps.date.outputs.date}}${{env.UI_VERSION_LETTER}}" 
-   
+      run: echo "version=${{steps.date.outputs.date}}${{env.UI_VERSION_LETTER}}" >> $GITHUB_OUTPUT
+
     - name: Upload Artifact 
       uses: actions/upload-artifact@v2
       with:
@@ -56,28 +56,17 @@ jobs:
       run: |
           echo "DO_RELEASE=T" >> $GITHUB_ENV
           echo "RELEASE_TAG_NAME=${{github.GITHUB_REF}}" >> $GITHUB_ENV
-          
-    - name: Create Manual Release
-      id: create_release
-      uses: actions/create-release@v1
-      if: env.DO_RELEASE == 'T'
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name:  ${{env.RELEASE_TAG_NAME}}
-        release_name: Compose Manager Package ${{env.RELEASE_TAG_NAME}}
-        body_path: ./archive/release_info
-        draft: true
-        prerelease: false
     
-    - name: Upload Release Asset
+    - name: Create manual release
       id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
+      uses: softprops/action-gh-release@v1
       if: env.DO_RELEASE == 'T'
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./archive/compose.manager-package-${{steps.version.outputs.version}}.txz
-          asset_name: compose.manager-package-${{steps.version.outputs.version}}.txz
-          asset_content_type: application/octet-stream
+          tag_name: ${{env.RELEASE_TAG_NAME}}
+          name: Compose Manager Package ${{env.RELEASE_TAG_NAME}}
+          body_path: ./archive/release_info
+          draft: false
+          prerelease: false
+          files: ./archive/compose.manager-package-${{steps.version.outputs.version}}.txz
