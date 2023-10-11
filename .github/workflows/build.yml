@@ -59,11 +59,11 @@ jobs:
     - name: Calculate md5 of package
       if: env.DO_RELEASE == 'T'
       id: hash
-      run: echo "md5=$(md5sum ./archive/compose.manager-package-${{steps.version.outputs.version}}.txz)" >> $GITHUB_OUTPUT
+      run: echo "md5=$(md5sum ./archive/compose.manager-package-${{steps.version.outputs.version}}.txz | head -n1 | awk '{print $1;}')" >> $GITHUB_OUTPUT
     - name: Update md5 and version in plg definition
       if: env.DO_RELEASE == 'T'
       run: |
-          sed -i -e 's|<!ENTITY version  ".*">|<!ENTITY version  "${{steps.version.outputs.version}}">|' -e 's|<!ENTITY packageMD5  ".*">|<!ENTITY packageMD5  "${{steps.hash.outputs.md5}}">|' ./compose.manager.plg
+          sed -i -e 's|<!ENTITY version     ".*">|<!ENTITY version     "${{steps.version.outputs.version}}">|' -e 's|<!ENTITY packageMD5  ".*">|<!ENTITY packageMD5  "${{steps.hash.outputs.md5}}">|' ./compose.manager.plg
     - name: Commit changes to repo
       if: env.DO_RELEASE == 'T'
       uses: stefanzweifel/git-auto-commit-action@v5
