@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name        "compose.manager">
 <!ENTITY author      "dcflachs">
-<!ENTITY version     "2023.09.12b">
+<!ENTITY version     "2023.10.11">
 <!ENTITY launch      "Settings/&name;">
 <!ENTITY packageVER  "&version;">
 <!ENTITY packageMD5  "1bdd814c6673f79cba757a8051e2569a">
@@ -25,6 +25,8 @@
 >
 
 <CHANGES>
+###2023.10.11
+- Update compose to v2.22
 ###2023.09.12b
 - Fix creation of stack without snake_case
 ###2023.09.12a
