@@ -56,7 +56,13 @@ jobs:
       run: |
           echo "DO_RELEASE=T" >> $GITHUB_ENV
           echo "RELEASE_TAG_NAME=${{github.GITHUB_REF}}" >> $GITHUB_ENV
-    
+    - name: Update md5 and version
+      if: env.DO_RELEASE == 'T'
+      run: |
+          sed -i -e 's|<!ENTITY packageVER  ".*">|<!ENTITY packageVER  "${{steps.version.outputs.version}}">|' -e 's|<!ENTITY packageMD5  ".*">|<!ENTITY packageMD5  "$(md5sum ./archive/compose.manager-package-${{steps.version.outputs.version}}.txz)">|' ./compose.manager.plg
+    - name: Commit changes to repo
+      if: env.DO_RELEASE == 'T'
+      uses: stefanzweifel/git-auto-commit-action@v5
     - name: Create manual release
       id: upload-release-asset 
       uses: softprops/action-gh-release@v1
