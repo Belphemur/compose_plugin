@@ -25,6 +25,8 @@
 >
 
 <CHANGES>
+###2023.11.21
+- Update compose 2.23.1
 ###2023.11.03
 - Update compose to v2.23
 ###2023.10.11
