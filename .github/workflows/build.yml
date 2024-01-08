@@ -9,6 +9,8 @@ on:
         description: 'Create a Release T/F'
       version_letter:
         description: 'Additional Letter to add to the version'
+      compose_version:
+        description: 'Version of docker compose'
         
 jobs:
   build:
@@ -28,7 +30,10 @@ jobs:
       if: github.event.inputs.version_letter
       run: |
           echo "UI_VERSION_LETTER=${{github.event.inputs.version_letter}}" >> $GITHUB_ENV
-      
+    - name: Set Docker Compose version ENV Variables
+      if: github.event.inputs.compose_version
+      run: |
+          echo "COMPOSE_VERSION=${{github.event.inputs.compose_version}}" >> $GITHUB_ENV      
     - name: Build the in Docker
       run: |
         chmod +x ./build_in_docker.sh
