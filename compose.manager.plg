@@ -25,6 +25,17 @@
 >
 
 <CHANGES>
+###2024.02.20
+- Fix a bug in handling of stacks without profiles.
+###2024.02.19
+- Add option to specify the location in which project directories are stored.
+- Add basic support for handling stacks that define profiles.
+###2024.01.16
+- Add option to specify the path to an env file. (Thanks to mtongnz)
+###2023.09.30
+- Add option to recreate containers during autostart.
+###2023.09.13
+- Docker Compose v2.21.0
 ###2023.11.21
 - Update compose 2.23.1
 ###2023.11.03
