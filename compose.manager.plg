@@ -36,24 +36,9 @@
 - Add option to specify the path to an env file. (Thanks to mtongnz)
 ###2023.09.30
 - Add option to recreate containers during autostart.
-###2023.09.13
+###2023.09.13 
 - Docker Compose v2.21.0
-###2023.11.21
-- Update compose 2.23.1
-###2023.11.03
-- Update compose to v2.23
-###2023.10.11
-- Update compose to v2.22
-###2023.09.12b
-- Fix creation of stack without snake_case
-###2023.09.12a
-- Force snake_case naming for docker compose project
-  - enforced by Docker Compose since v2.17
-###2023.09.11
-- Update dependencies
-  - Docker Compose v2.21.0
-  - ACE 2.1.2
-###2023.05.24
+###2023.05.24 
 - Fix to patch_ui.sh for 6.12
 ###2023.04.27 
 - Docker Compose v2.17.3
