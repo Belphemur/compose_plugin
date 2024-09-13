@@ -45,7 +45,7 @@ jobs:
       run: echo "version=${{steps.date.outputs.date}}${{env.UI_VERSION_LETTER}}" >> $GITHUB_OUTPUT
 
     - name: Upload Artifact 
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: compose.manager-package-${{steps.version.outputs.version}}.txz
         path: ./archive/compose.manager-package-*
