@@ -25,7 +25,12 @@
 >
 
 <CHANGES>
-###2024.05.10
+###2024.09.13
+- Added option to show the compose manager interface as a separate page in the header menu. (Thanks to ich777)
+###2024.08.29
+- Docker Compose v2.29.2
+- Fix envfile quoting in compose.sh
+###2024.05.10 
 - Docker Compose v2.27.0
 ###2024.02.20
 - Fix a bug in handling of stacks without profiles.
